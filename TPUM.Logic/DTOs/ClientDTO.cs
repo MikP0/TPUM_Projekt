@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TPUM.Data.Model;
 
 namespace TPUM.Logic.DTOs
 {
@@ -10,5 +11,17 @@ namespace TPUM.Logic.DTOs
         public string Name { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
+        public CartDTO Cart { get; set; }
     }
 }
+
+
+/*
+ * lock(obj){
+ *      if(isInKoszyk)
+ *          product.IsInKoszyk = true;
+ *      else
+ *          throw ...
+ * }
+ * 
+ */

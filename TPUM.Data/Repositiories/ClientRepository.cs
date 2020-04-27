@@ -49,6 +49,7 @@ namespace TPUM.Data.Repositiories
             client.LastName = entity.LastName;
             client.Name = entity.Name;
             client.DateOfBirth = entity.DateOfBirth;
+            client.Cart = entity.Cart;
 
             return client;
         }
