@@ -10,6 +10,7 @@ namespace TPUM.Data.Repositiories
     class ProductRepository : IRepository<Product>
     {
         private readonly DbContext _dbContext;
+        private readonly object m_SyncObject = new object();
         public ProductRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
@@ -44,14 +45,18 @@ namespace TPUM.Data.Repositiories
 
         public Product Update(int id, Product entity)
         {
-            Product product = _dbContext.Products.FirstOrDefault(c => c.Id == id);
+            lock(m_SyncObject)
+            {
+                Product product = _dbContext.Products.FirstOrDefault(c => c.Id == id);
 
-            product.Author = entity.Author;
-            product.Name = entity.Name;
-            product.Price = entity.Price;
-            product.AllowedFromDate = entity.AllowedFromDate;
+                product.Author = entity.Author;
+                product.Name = entity.Name;
+                product.Price = entity.Price;
+                product.AllowedFromDate = entity.AllowedFromDate;
+                product.IsLocked = entity.IsLocked;
 
-            return product;
+                return product;
+            }
         }
     }
 }
