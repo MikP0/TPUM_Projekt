@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using TPUM.Data.Interfaces;
 using TPUM.Data.Model;
 
 namespace TPUM.Data
 {
-    public sealed class DbContext
+    public sealed class DbContext : DataContext
     {
         private static DbContext instance = null;
         private static readonly object lockobj = new object();
@@ -70,9 +71,5 @@ namespace TPUM.Data
                 IsLocked = false
             });
         }
-
-        public List<Client> Clients { get; set; }
-        public List<Product> Products { get; set; }
-
     }
 }
