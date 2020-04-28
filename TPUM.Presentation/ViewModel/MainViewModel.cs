@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Windows;
 using TPUM.Logic.DTOs;
 using TPUM.Logic.Services;
+using System.Linq;
 
 namespace TPUM.Presentation.ViewModel
 {
@@ -21,11 +22,9 @@ namespace TPUM.Presentation.ViewModel
         public ICommand DoCommand { get; }
         public ICommand DoNextCommand { get; }
 
-
         private List<ProductDTO> _Products;
         private ProductDTO _CurrentProduct;
-
-        //private ProductService _ProductService;
+        private ProductService _ProductService;
 
         public List<ProductDTO> Products
         {
@@ -59,21 +58,8 @@ namespace TPUM.Presentation.ViewModel
             DoCommand = new RelayCommand(DoSomething);
             DoNextCommand = new RelayCommand(DoNextSomething);
 
-            Products = new List<ProductDTO>();
-
-            Products.Add(new ProductDTO());
-            Products.Add(new ProductDTO());
-
-            Products[0].Id = 1;
-            Products[0].Name = "aa";
-            Products[0].Author = "bb";
-            Products[0].Price = 12.20f;
-
-            Products[1].Id = 2;
-            Products[1].Name = "baa";
-            Products[1].Author = "abb";
-            Products[1].Price = 13.20f;
-
+            _ProductService = new ProductService();
+            _Products = _ProductService.GetProducts().ToList();
             _CurrentProduct = Products[0];
         }
 
@@ -81,13 +67,16 @@ namespace TPUM.Presentation.ViewModel
 
         private void DoSomething()
         {
-            SetNewTimerInBackground(TimeSpan.FromSeconds(1));
+            SetNewTimerInBackground(TimeSpan.FromSeconds(3));
         }
 
         private void DoNextSomething()
         {
             //MessageBox.Show(_accumulator.ToString());
-            MessageBox.Show(_CurrentProduct.Name);
+            //MessageBox.Show(_CurrentProduct.Name);
+
+            Products.Remove(_CurrentProduct);
+            RaisePropertyChanged();
         }
 
 
@@ -111,11 +100,21 @@ namespace TPUM.Presentation.ViewModel
 
         public void DoSomethingWithTimerTick()
         {
-           _accumulator++; 
+            var protuctTemp = _Products;
+
+            foreach (ProductDTO product in protuctTemp)
+            {
+                // _ProductService.GetProduct(product.Id).Price += 1.0f;
+                product.Price += 1;
+                //RaisePropertyChanged("Products");
+            }
+
+            _Products = protuctTemp;
+
+            //_Products = _ProductService.GetProducts().ToList();
+             RaisePropertyChanged("_Products");
+
+            //_accumulator++; 
         }
-
-
-
-
     }
 }
