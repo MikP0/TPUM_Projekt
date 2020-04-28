@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TPUM.Data;
+using TPUM.Data.Repositiories;
 using TPUM.Data.Interfaces;
 using TPUM.Data.Model;
 using TPUM.Logic.DTOs;
@@ -11,6 +13,11 @@ namespace TPUM.Logic.Services
     public class ProductService
     {
         private readonly IRepository<Product> _productRepository;
+
+        public ProductService()
+        {
+            _productRepository = new ProductRepository(DbContext.Instance);
+        }
 
         public ProductService(IRepository<Product> productRepository)
         {

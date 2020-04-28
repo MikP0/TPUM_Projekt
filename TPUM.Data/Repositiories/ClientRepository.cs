@@ -7,9 +7,13 @@ using TPUM.Data.Model;
 
 namespace TPUM.Data.Repositiories
 {
-    class ClientRepository : IRepository<Client>
+    public class ClientRepository : IRepository<Client>
     {
         private readonly DbContext _dbContext;
+        public ClientRepository()
+        {
+            _dbContext = DbContext.Instance;
+        }
         public ClientRepository(DbContext dbContext)
         {
             _dbContext = dbContext;

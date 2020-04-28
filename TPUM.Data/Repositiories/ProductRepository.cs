@@ -7,10 +7,16 @@ using TPUM.Data.Model;
 
 namespace TPUM.Data.Repositiories
 {
-    class ProductRepository : IRepository<Product>
+    public class ProductRepository : IRepository<Product>
     {
         private readonly DbContext _dbContext;
         private readonly object m_SyncObject = new object();
+
+        public ProductRepository()
+        {
+            _dbContext = DbContext.Instance;
+        }
+
         public ProductRepository(DbContext dbContext)
         {
             _dbContext = dbContext;

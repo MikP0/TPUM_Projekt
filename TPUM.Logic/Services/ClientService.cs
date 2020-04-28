@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TPUM.Data;
 using TPUM.Data.Interfaces;
 using TPUM.Data.Model;
+using TPUM.Data.Repositiories;
 using TPUM.Logic.DTOs;
 
 
@@ -12,7 +14,10 @@ namespace TPUM.Logic.Services
     public class ClientService
     {
         private readonly IRepository<Client> _clientRepository;
-
+        public ClientService()
+        {
+            _clientRepository = new ClientRepository(DbContext.Instance);
+        }
         public ClientService(IRepository<Client> clientRepository)
         {
             _clientRepository = clientRepository;

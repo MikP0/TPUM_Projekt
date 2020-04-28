@@ -25,7 +25,7 @@ namespace TPUM.Presentation.ViewModel
         private List<ProductDTO> _Products;
         private ProductDTO _CurrentProduct;
 
-        private ProductService _ProductService;
+        //private ProductService _ProductService;
 
         public List<ProductDTO> Products
         {

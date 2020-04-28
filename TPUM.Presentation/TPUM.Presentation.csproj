@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TPUM.Logic\TPUM.Logic.csproj" />
+    <Page Include="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="App.xaml" />
+    <ProjectReference Include="..\TPUM.Logic\TPUM.Logic.csproj" />
   </ItemGroup>
 
 </Project>
