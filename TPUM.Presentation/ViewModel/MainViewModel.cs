@@ -58,12 +58,12 @@ namespace TPUM.Presentation.ViewModel
             _CurrentProduct = Products[0];
         }
 
-        private void SetPricesTimer()
+        public void SetPricesTimer()
         {
             SetReactiveTimer(TimeSpan.FromSeconds(2));
         }
 
-        private void DeleteCurrentProduct()
+        public void DeleteCurrentProduct()
         {
             Products.Remove(_CurrentProduct);
 
@@ -88,7 +88,7 @@ namespace TPUM.Presentation.ViewModel
 
         public void RaisePrices()
         {
-            var productsTemp = Products;
+            ObservableCollection<ProductDTO> productsTemp = Products;
 
             foreach (ProductDTO product in productsTemp)
             {

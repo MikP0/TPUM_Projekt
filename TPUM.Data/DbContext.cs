@@ -36,7 +36,7 @@ namespace TPUM.Data
             {
                 Id = 1,
                 DateOfBirth = new DateTime(1997, 06, 25),
-                Cart = new Cart(),
+                Cart = new Cart { Products = new List<Product>() },
                 Name = "Jan",
                 LastName = "Naj"
             });
