@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TPUM.Data.Model;
 using TPUM.Logic.DTOs;
 
@@ -44,6 +42,6 @@ namespace TPUM.Logic
                 Products = cart.Products.Select(MapProduct).ToList()
             };
             return cartDTO;
-        }       
+        }
     }
 }

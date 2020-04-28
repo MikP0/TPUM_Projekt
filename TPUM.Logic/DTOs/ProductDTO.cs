@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TPUM.Logic.DTOs
+﻿namespace TPUM.Logic.DTOs
 {
     public class ProductDTO
     {

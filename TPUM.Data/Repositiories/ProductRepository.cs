@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TPUM.Data.Interfaces;
 using TPUM.Data.Model;
 
@@ -51,7 +50,7 @@ namespace TPUM.Data.Repositiories
 
         public Product Update(int id, Product entity)
         {
-            lock(m_SyncObject)
+            lock (m_SyncObject)
             {
                 Product product = _dbContext.Products.FirstOrDefault(c => c.Id == id);
 

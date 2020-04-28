@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.Reactive;
+using System.Reactive.Linq;
 using System.Windows.Input;
 using TPUM.Logic;
-using System.Reactive.Linq;
-using System.Reactive;
 using TPUM.Logic.DTOs;
 using TPUM.Logic.Services;
-using System.Collections.ObjectModel;
 
 namespace TPUM.Presentation.ViewModel
 {
@@ -68,7 +66,7 @@ namespace TPUM.Presentation.ViewModel
         private void DeleteCurrentProduct()
         {
             Products.Remove(_CurrentProduct);
-            
+
             if (Products.Count > 0)
             {
                 _CurrentProduct = Products[0];

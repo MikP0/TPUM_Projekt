@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TPUM.Data.Model;
 
 namespace TPUM.Data
@@ -15,8 +14,10 @@ namespace TPUM.Data
             Products = new List<Product>();
             GenerateData();
         }
-        public static DbContext Instance {
-            get {
+        public static DbContext Instance
+        {
+            get
+            {
                 lock (lockobj)
                 {
                     if (instance == null)
@@ -30,7 +31,8 @@ namespace TPUM.Data
 
         private void GenerateData()
         {
-            Clients.Add(new Client {
+            Clients.Add(new Client
+            {
                 Id = 1,
                 DateOfBirth = new DateTime(1997, 06, 25),
                 Cart = new Cart(),

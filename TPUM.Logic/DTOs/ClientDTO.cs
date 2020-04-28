@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TPUM.Data.Model;
-
-namespace TPUM.Logic.DTOs
+﻿namespace TPUM.Logic.DTOs
 {
     public class ClientDTO
     {

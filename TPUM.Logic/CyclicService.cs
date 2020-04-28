@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Reactive.Linq;
 using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 
 namespace TPUM.Logic
 {

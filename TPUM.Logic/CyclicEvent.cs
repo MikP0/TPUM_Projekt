@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TPUM.Logic
 {
@@ -11,6 +9,6 @@ namespace TPUM.Logic
             Counter = counter;
         }
 
-        public long Counter{ get; private set; }
+        public long Counter { get; private set; }
     }
 }
