@@ -47,6 +47,26 @@ namespace TPUM.Data
                 AllowedFromDate = new DateTime(1999, 01, 01),
                 IsLocked = false
             });
+
+            Products.Add(new Product
+            {
+                Id = 2,
+                Author = "Blueray Project Yellow",
+                Name = "Lepsza gra",
+                Price = 25.50f,
+                AllowedFromDate = new DateTime(1999, 01, 01),
+                IsLocked = false
+            });
+
+            Products.Add(new Product
+            {
+                Id = 3,
+                Author = "VHS Project Green",
+                Name = "Ultra gra",
+                Price = 11.50f,
+                AllowedFromDate = new DateTime(1999, 01, 01),
+                IsLocked = false
+            });
         }
 
         public List<Client> Clients { get; set; }

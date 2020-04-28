@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
-
-
-
 using TPUM.Logic;
 using System.Reactive.Linq;
-using System.Reactive.Concurrency;
 using System.Reactive;
-using System.Diagnostics;
-using System.Windows;
 using TPUM.Logic.DTOs;
 using TPUM.Logic.Services;
-using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace TPUM.Presentation.ViewModel
 {
@@ -22,11 +16,15 @@ namespace TPUM.Presentation.ViewModel
         public ICommand DoCommand { get; }
         public ICommand DoNextCommand { get; }
 
-        private List<ProductDTO> _Products;
+        private ObservableCollection<ProductDTO> _Products;
         private ProductDTO _CurrentProduct;
         private ProductService _ProductService;
 
-        public List<ProductDTO> Products
+        private CyclicService _cyclicTimer;
+        private IObservable<EventPattern<CyclicEvent>> _tickObservable;
+        private IDisposable _observer;
+
+        public ObservableCollection<ProductDTO> Products
         {
             get
             {
@@ -52,69 +50,59 @@ namespace TPUM.Presentation.ViewModel
             }
         }
 
-
         public MainViewModel()
         {
-            DoCommand = new RelayCommand(DoSomething);
-            DoNextCommand = new RelayCommand(DoNextSomething);
+            DoCommand = new RelayCommand(SetPricesTimer);
+            DoNextCommand = new RelayCommand(DeleteCurrentProduct);
 
             _ProductService = new ProductService();
-            _Products = _ProductService.GetProducts().ToList();
+            _Products = new ObservableCollection<ProductDTO>(_ProductService.GetProducts());
             _CurrentProduct = Products[0];
         }
 
-
-
-        private void DoSomething()
+        private void SetPricesTimer()
         {
-            SetNewTimerInBackground(TimeSpan.FromSeconds(3));
+            SetReactiveTimer(TimeSpan.FromSeconds(2));
         }
 
-        private void DoNextSomething()
+        private void DeleteCurrentProduct()
         {
-            //MessageBox.Show(_accumulator.ToString());
-            //MessageBox.Show(_CurrentProduct.Name);
-
             Products.Remove(_CurrentProduct);
-            RaisePropertyChanged();
+            
+            if (Products.Count > 0)
+            {
+                _CurrentProduct = Products[0];
+            }
+            else
+            {
+                _CurrentProduct = null;
+            }
         }
 
-
-        long _accumulator = 0;
-        CyclicService _cyclicTimer;
-        IObservable<EventPattern<CyclicEvent>> _tickObservable;
-        IDisposable _observer;
-
-        public void SetNewTimerInBackground(TimeSpan period)
+        public void SetReactiveTimer(TimeSpan period)
         {
-            _accumulator = 0;
-
             _cyclicTimer = new CyclicService(period);
             _tickObservable = Observable.FromEventPattern<CyclicEvent>(_cyclicTimer, "Tick");
-            _observer = _tickObservable.Subscribe(x => DoSomethingWithTimerTick());
+            _observer = _tickObservable.Subscribe(x => RaisePrices());
 
             _cyclicTimer.Start();
-
-            MessageBox.Show("Start");
         }
 
-        public void DoSomethingWithTimerTick()
+        public void RaisePrices()
         {
-            var protuctTemp = _Products;
+            var productsTemp = Products;
 
-            foreach (ProductDTO product in protuctTemp)
+            foreach (ProductDTO product in productsTemp)
             {
-                // _ProductService.GetProduct(product.Id).Price += 1.0f;
-                product.Price += 1;
-                //RaisePropertyChanged("Products");
+                product.Price -= 1;
+
+                if (product.Price <= 0)
+                {
+                    product.Price = 1;
+                }
             }
 
-            _Products = protuctTemp;
-
-            //_Products = _ProductService.GetProducts().ToList();
-             RaisePropertyChanged("_Products");
-
-            //_accumulator++; 
+            Products = new ObservableCollection<ProductDTO>(productsTemp);
         }
     }
 }

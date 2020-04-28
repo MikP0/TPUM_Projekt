@@ -11,8 +11,8 @@
         <vm:MainViewModel x:Key="MainViewModel"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource MainViewModel}">
-        <Button Content="Button" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Height="53" Width="128" Command="{Binding DoCommand}"/>
-        <Button Content="Button2" HorizontalAlignment="Left" Margin="207,347,0,0" VerticalAlignment="Top" Height="53" Width="127" Command="{Binding DoNextCommand}"/>
+        <Button Content="Czas na niskie ceny" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Height="53" Width="128" Command="{Binding DoCommand}"/>
+        <Button Content="Wyrzuć to" HorizontalAlignment="Left" Margin="207,347,0,0" VerticalAlignment="Top" Height="53" Width="127" Command="{Binding DoNextCommand}"/>
         <StackPanel Margin="0,0,0,105">
             <ListView x:Name="lsvProductMaster" ItemsSource="{Binding Products}" SelectedItem="{Binding CurrentProduct}" Height="313">
                 <ListView.View>
