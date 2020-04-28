@@ -11,6 +11,8 @@ using System.Reactive.Concurrency;
 using System.Reactive;
 using System.Diagnostics;
 using System.Windows;
+using TPUM.Logic.DTOs;
+using TPUM.Logic.Services;
 
 namespace TPUM.Presentation.ViewModel
 {
@@ -20,10 +22,59 @@ namespace TPUM.Presentation.ViewModel
         public ICommand DoNextCommand { get; }
 
 
+        private List<ProductDTO> _Products;
+        private ProductDTO _CurrentProduct;
+
+        private ProductService _ProductService;
+
+        public List<ProductDTO> Products
+        {
+            get
+            {
+                return _Products;
+            }
+            set
+            {
+                _Products = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ProductDTO CurrentProduct
+        {
+            get
+            {
+                return _CurrentProduct;
+            }
+            set
+            {
+                _CurrentProduct = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         public MainViewModel()
         {
             DoCommand = new RelayCommand(DoSomething);
             DoNextCommand = new RelayCommand(DoNextSomething);
+
+            Products = new List<ProductDTO>();
+
+            Products.Add(new ProductDTO());
+            Products.Add(new ProductDTO());
+
+            Products[0].Id = 1;
+            Products[0].Name = "aa";
+            Products[0].Author = "bb";
+            Products[0].Price = 12.20f;
+
+            Products[1].Id = 2;
+            Products[1].Name = "baa";
+            Products[1].Author = "abb";
+            Products[1].Price = 13.20f;
+
+            _CurrentProduct = Products[0];
         }
 
 
@@ -35,7 +86,8 @@ namespace TPUM.Presentation.ViewModel
 
         private void DoNextSomething()
         {
-            MessageBox.Show(_accumulator.ToString());
+            //MessageBox.Show(_accumulator.ToString());
+            MessageBox.Show(_CurrentProduct.Name);
         }
 
 
@@ -59,7 +111,7 @@ namespace TPUM.Presentation.ViewModel
 
         public void DoSomethingWithTimerTick()
         {
-            _accumulator++;
+           _accumulator++; 
         }
 
 
