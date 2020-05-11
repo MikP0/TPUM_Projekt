@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TPUM.Logic.DTOs;
 using TPUM.Logic.Services;
@@ -14,7 +15,7 @@ namespace TPUM.Logic.UnitTests
         public void GetUserUnitTest()
         {
             ClientService _ClientService = new ClientService();
-            Assert.AreEqual(_ClientService.GetUser(1).Name, "Jan");
+            Assert.AreEqual(_ClientService.GetUser(1).Result.Name, "Jan");
         }
 
         [TestMethod]
@@ -22,9 +23,9 @@ namespace TPUM.Logic.UnitTests
         {
             ClientService _ClientService = new ClientService();
 
-            IEnumerable<ClientDTO> _Clients = _ClientService.GetUsers();
+            Task<IEnumerable<ClientDTO>> _Clients = _ClientService.GetUsers();
 
-            Assert.AreEqual(_Clients.Count(), 1);
+            Assert.AreEqual(_Clients.Result.Count(), 1);
         }
 
         [TestMethod]
@@ -32,9 +33,9 @@ namespace TPUM.Logic.UnitTests
         {
             ClientService _ClientService = new ClientService();
 
-            IEnumerable<ClientDTO> _Clients = _ClientService.GetUsersByAge(23);
+            Task<IEnumerable<ClientDTO>> _Clients = _ClientService.GetUsersByAge(23);
 
-            Assert.AreEqual(_Clients.Count(), 1);
+            Assert.AreEqual(_Clients.Result.Count(), 1);
         }
     }
 }
