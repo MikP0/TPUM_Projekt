@@ -22,6 +22,10 @@ namespace TPUM.Presentation.ViewModel
         private IObservable<EventPattern<CyclicEvent>> _tickObservable;
         private IDisposable _observer;
 
+        private ClientService _ClientService;
+        private ObservableCollection<ClientDTO> _Clients;
+
+
         public ObservableCollection<ProductDTO> Products
         {
             get
@@ -31,6 +35,19 @@ namespace TPUM.Presentation.ViewModel
             set
             {
                 _Products = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ClientDTO> Clients
+        {
+            get
+            {
+                return _Clients;
+            }
+            set
+            {
+                _Clients = value;
                 RaisePropertyChanged();
             }
         }
@@ -56,6 +73,9 @@ namespace TPUM.Presentation.ViewModel
             _ProductService = new ProductService();
             _Products = new ObservableCollection<ProductDTO>(_ProductService.GetProducts());
             _CurrentProduct = Products[0];
+
+            _ClientService = new ClientService();
+
         }
 
         public void SetPricesTimer()
@@ -75,6 +95,11 @@ namespace TPUM.Presentation.ViewModel
             {
                 _CurrentProduct = null;
             }
+        }
+        
+        public async void GetAllClients()
+        {
+            _Clients = new ObservableCollection<ClientDTO>(await _ClientService.GetUsers());
         }
 
         public void SetReactiveTimer(TimeSpan period)

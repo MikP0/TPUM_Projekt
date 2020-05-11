@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TPUM.Data;
 using TPUM.Data.Interfaces;
 using TPUM.Data.Model;
@@ -22,21 +23,19 @@ namespace TPUM.Logic.Services
             _clientRepository = clientRepository;
         }
 
-        public ClientDTO GetUser(int id)
+        public async Task<ClientDTO> GetUser(int id)
         {
-            Client client = _clientRepository.Get(id);
-
-            return Mappings.MapClient(client);
+            return Mappings.MapClient(_clientRepository.Get(id));
         }
 
-        public IEnumerable<ClientDTO> GetUsers()
+        public async Task<IEnumerable<ClientDTO>> GetUsers()
         {
             IEnumerable<Client> clients = _clientRepository.Get();
 
             return clients.Select(c => Mappings.MapClient(c)).ToList();
         }
 
-        public IEnumerable<ClientDTO> GetUsersByAge(int age)
+        public async Task<IEnumerable<ClientDTO>> GetUsersByAge(int age)
         {
             IEnumerable<Client> clients = _clientRepository.Get(c => c.DateOfBirth.Year == DateTime.Now.Year - age);
 
