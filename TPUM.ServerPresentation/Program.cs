@@ -8,11 +8,11 @@ namespace TPUM.ServerPresentation
     {
         static async Task Main(string[] args)
         {
-            Action<String> d = message => Console.WriteLine(message);
+            Action<String> logger = message => Console.WriteLine(message);
 
             try
             {
-                using (CommunicationManager node = new CommunicationManager(8081, d))
+                using (CommunicationManager node = new CommunicationManager(Int32.Parse(Properties.Resources.PortNumber), logger))
                 {
                     await node.InitServerAsync();
                     Console.ReadLine();
@@ -20,7 +20,7 @@ namespace TPUM.ServerPresentation
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"The aplikcation has been handled by the exception {ex}");
+                Console.WriteLine($"Exception thrown by the application: {ex}");
             }
         }
     }

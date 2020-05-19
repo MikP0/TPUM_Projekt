@@ -7,16 +7,10 @@
         public string LastName { get; set; }
         public int Age { get; set; }
         public CartDTO Cart { get; set; }
+
+        public override string ToString() 
+        {
+            return Id + ":" + Name + ":" + LastName + ":" + Age;
+        }
     }
 }
-
-
-/*
- * lock(obj){
- *      if(isInKoszyk)
- *          product.IsInKoszyk = true;
- *      else
- *          throw ...
- * }
- * 
- */

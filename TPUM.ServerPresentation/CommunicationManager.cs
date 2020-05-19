@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
+using TPUM.Logic.Services;
 
 namespace TPUM.ServerPresentation
 {
@@ -19,7 +21,7 @@ namespace TPUM.ServerPresentation
 
         public async Task InitServerAsync()
         {
-            Log($"listening web-socket p2p port on: {WebsocketPort}");
+            Log($"Web socket server listening on port: {WebsocketPort}");
             await WebSocketServer.Server(WebsocketPort, async _ws => await InitConnectionAsync(_ws));
         }
 
@@ -28,7 +30,7 @@ namespace TPUM.ServerPresentation
             Sockets.Add(ws);
             initMessageHandler(ws);
             initErrorHandler(ws);
-            await WriteAsync(ws, "");
+            await WriteAsync(ws, "Connected");
         }
 
         private void initErrorHandler(WebSocketConnection ws)
@@ -45,7 +47,7 @@ namespace TPUM.ServerPresentation
 
         private async Task WriteAsync(WebSocketConnection ws, string message)
         {
-            Log($"Writing message {message}");
+            Log($"[Writing message]: {message}");
             await ws.SendAsync(message);
         }
 
@@ -53,9 +55,13 @@ namespace TPUM.ServerPresentation
         {
             ws.onMessage = async (data) =>
             {
-                Log($"Received message {data}");
+                Log($"[Received message]: {data}");
+                //Resolve message
+                MessageResolver messageResolver = new MessageResolver(Log);
+                await ws.SendAsync(messageResolver.Resolve(data));
             };
         }
+
 
         public void Dispose()
         {
@@ -67,7 +73,7 @@ namespace TPUM.ServerPresentation
         }
 
         private Action<string> Log { get; }
-        private int WebsocketPort = 6001;
+        private int WebsocketPort = 8081;
         private List<WebSocketConnection> Sockets { get; set; } = new List<WebSocketConnection>();
     }
 }
