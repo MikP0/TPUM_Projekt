@@ -65,7 +65,7 @@ namespace TPUM.ServerPresentation
 
         public void Dispose()
         {
-            Log($"Shuting down the communicatin engine");
+            Log($"Shuting down the communication manager");
             List<Task> _disconnectionTasks = new List<Task>();
             foreach (WebSocketConnection _item in Sockets)
                 _disconnectionTasks.Add(_item.DisconnectAsync());
