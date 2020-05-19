@@ -19,7 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPUM.Logic.UnitTests", "TPU
 		{CC75B5EA-BF16-43B3-ACE3-022092861993} = {CC75B5EA-BF16-43B3-ACE3-022092861993}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPUM.Presentation.UnitTests", "TPUM.Presentation.UnitTests\TPUM.Presentation.UnitTests.csproj", "{55EC34C8-CA02-48BD-A04E-F1286121F922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TPUM.Presentation.UnitTests", "TPUM.Presentation.UnitTests\TPUM.Presentation.UnitTests.csproj", "{55EC34C8-CA02-48BD-A04E-F1286121F922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPUM.ServerPresentation", "TPUM.ServerPresentation\TPUM.ServerPresentation.csproj", "{89A45909-0DA5-4D0F-9D80-3E896213A65A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{55EC34C8-CA02-48BD-A04E-F1286121F922}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55EC34C8-CA02-48BD-A04E-F1286121F922}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55EC34C8-CA02-48BD-A04E-F1286121F922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A45909-0DA5-4D0F-9D80-3E896213A65A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A45909-0DA5-4D0F-9D80-3E896213A65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A45909-0DA5-4D0F-9D80-3E896213A65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A45909-0DA5-4D0F-9D80-3E896213A65A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
