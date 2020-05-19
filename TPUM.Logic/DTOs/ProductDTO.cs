@@ -10,7 +10,7 @@
 
         public override string ToString()
         {
-            return Id + ":" + Name + ":" + Author + ":" + Price + ":" + MinimalAge;
+            return "P" + Id + ":" + Name + ":" + Author + ":" + Price + ":" + MinimalAge;
         }
     }
 }
