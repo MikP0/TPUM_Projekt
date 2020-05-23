@@ -74,6 +74,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TPUM.Dependencies\TPUM.Dependencies.csproj">
+      <Project>{013ef2b6-69bb-4be3-a6f9-5c15105a55b6}</Project>
+      <Name>TPUM.Dependencies</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TPUM.Logic\TPUM.Logic.csproj">
       <Project>{cc75b5ea-bf16-43b3-ace3-022092861993}</Project>
       <Name>TPUM.Logic</Name>

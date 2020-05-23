@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TPUM.Logic.DTOs;
+using TPUM.Dependencies.Model;
 using TPUM.Logic.Services;
 
 namespace TPUM.Logic.UnitTests
@@ -22,7 +22,7 @@ namespace TPUM.Logic.UnitTests
         {
             ProductService _ProductService = new ProductService();
 
-            IEnumerable<ProductDTO> _Products = _ProductService.GetProducts();
+            IEnumerable<SProduct> _Products = _ProductService.GetProducts();
 
             Assert.AreEqual(_Products.Count(), 3);
         }
@@ -32,7 +32,7 @@ namespace TPUM.Logic.UnitTests
         {
             ProductService _ProductService = new ProductService();
 
-            IEnumerable<ProductDTO> _Products = _ProductService.GetProductsFromAge(21);
+            IEnumerable<SProduct> _Products = _ProductService.GetProductsFromAge(21);
 
             Assert.AreEqual(_Products.Count(), 3);
         }

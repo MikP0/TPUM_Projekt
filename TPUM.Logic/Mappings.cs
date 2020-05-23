@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TPUM.Data.Model;
-using TPUM.Logic.DTOs;
+using TPUM.Dependencies.Model;
 
 namespace TPUM.Logic
 {
     public static class Mappings
     {
-        public static ClientDTO MapClient(Client client)
+        public static SClient MapClient(Client client)
         {
-            ClientDTO clientDTO = new ClientDTO
+            SClient sclient = new SClient
             {
                 Id = client.Id,
                 Name = client.Name,
@@ -19,12 +19,12 @@ namespace TPUM.Logic
                 Cart = MapCart(client.Cart)
             };
 
-            return clientDTO;
+            return sclient;
         }
 
-        public static ProductDTO MapProduct(Product product)
+        public static SProduct MapProduct(Product product)
         {
-            ProductDTO productDTO = new ProductDTO
+            SProduct sproduct = new SProduct
             {
                 Id = product.Id,
                 Author = product.Author,
@@ -33,16 +33,16 @@ namespace TPUM.Logic
                 Price = product.Price
             };
 
-            return productDTO;
+            return sproduct;
         }
 
-        public static CartDTO MapCart(Cart cart)
+        public static SCart MapCart(Cart cart)
         {
-            CartDTO cartDTO = new CartDTO
+            SCart scart = new SCart
             {
                 Products = cart.Products.Select(MapProduct).ToList()
             };
-            return cartDTO;
+            return scart;
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using TPUM.Logic.DTOs;
+using TPUM.Dependencies.Model;
 
 namespace TPUM.Logic.Interfaces
 {
     interface IProductService
     {
-        ProductDTO GetProduct(int id);
-        IEnumerable<ProductDTO> GetProducts();
-        IEnumerable<ProductDTO> GetProductsByMinAge(int age);
+        SProduct GetProduct(int id);
+        IEnumerable<SProduct> GetProducts();
+        IEnumerable<SProduct> GetProductsByMinAge(int age);
     }
 }

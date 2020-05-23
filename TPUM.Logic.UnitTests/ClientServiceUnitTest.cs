@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPUM.Logic.DTOs;
+using TPUM.Dependencies.Model;
 using TPUM.Logic.Services;
 
 namespace TPUM.Logic.UnitTests
@@ -23,7 +23,7 @@ namespace TPUM.Logic.UnitTests
         {
             ClientService _ClientService = new ClientService();
 
-            Task<IEnumerable<ClientDTO>> _Clients = _ClientService.GetUsers();
+            Task<IEnumerable<SClient>> _Clients = _ClientService.GetUsers();
 
             Assert.AreEqual(_Clients.Result.Count(), 1);
         }
@@ -33,7 +33,7 @@ namespace TPUM.Logic.UnitTests
         {
             ClientService _ClientService = new ClientService();
 
-            Task<IEnumerable<ClientDTO>> _Clients = _ClientService.GetUsersByAge(23);
+            Task<IEnumerable<SClient>> _Clients = _ClientService.GetUsersByAge(23);
 
             Assert.AreEqual(_Clients.Result.Count(), 1);
         }
