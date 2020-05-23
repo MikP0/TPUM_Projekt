@@ -11,5 +11,10 @@ namespace TPUM.Dependencies.Model
         public string LastName { get; set; }
         public int Age { get; set; }
         public SCart Cart { get; set; }
+
+        public override string ToString()
+        {
+            return "C" + Id + ":" + Name + ":" + LastName + ":" + Age;
+        }
     }
 }
