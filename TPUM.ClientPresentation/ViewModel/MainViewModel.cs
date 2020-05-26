@@ -145,7 +145,7 @@ namespace TPUM.ClientPresentation.ViewModel
 
         public async void GetProducts()
         {
-            await _ConnectionService.SendTask("GetProduct:1");
+            await _ConnectionService.SendTask("GetAllProducts");
             SetReactiveTimer(TimeSpan.FromSeconds(1));
         }
 
