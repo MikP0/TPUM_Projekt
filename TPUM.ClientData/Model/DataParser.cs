@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TPUM.Dependencies.Model;
 
 namespace TPUM.ClientData.Model
 {
     public static class DataParser
     {
-        public static Client ParseClient(string message)
+        public static SClient ParseSClient(string message)
         {
             int w = 0;
             string getId, getName, getLName, getAge, sign;
@@ -40,18 +41,18 @@ namespace TPUM.ClientData.Model
             }
             getAge = sign;
 
-            Client client = new Client();
-            client.Id = int.Parse(getId);
-            client.Name = getName;
-            client.LastName = getLName;
-            DateTime dateTime = new DateTime(DateTime.Today.Year - int.Parse(getAge), 1, 1);
-            client.DateOfBirth = dateTime;
-            client.Cart = new Cart { Products = new List<Product>() };
+            SClient sclient = new SClient();
+            sclient.Id = int.Parse(getId);
+            sclient.Name = getName;
+            sclient.LastName = getLName;
+            sclient.Age = int.Parse(getAge);
+            sclient.Cart = new SCart { Products = new List<SProduct>() };
 
-            return client;
+            return sclient;
         }
 
-        public static Product ParseProduct(string message)
+
+        public static SProduct ParseSProduct(string message)
         {
             int w = 0;
             string getId, getName, getAuthor, getPrice, getDate, sign;
@@ -89,15 +90,15 @@ namespace TPUM.ClientData.Model
             }
             getDate = sign;
 
-            Product product = new Product();
-            product.Id = int.Parse(getId);
-            product.Name = getName;
-            product.Author = getAuthor;
-            product.Price = float.Parse(getPrice);
-            DateTime dateTime = DateTime.Today;
-            product.AllowedFromDate = dateTime;
 
-            return product;
+            SProduct sproduct = new SProduct();
+            sproduct.Id = int.Parse(getId);
+            sproduct.Name = getName;
+            sproduct.Author = getAuthor;
+            sproduct.Price = float.Parse(getPrice);
+            sproduct.MinimalAge = int.Parse(getDate);
+
+            return sproduct;
         }
     }
 }

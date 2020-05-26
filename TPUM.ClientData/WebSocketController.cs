@@ -51,12 +51,14 @@ namespace TPUM.ClientData
             {
                 case "C":
                     {
-                        DbContext.Instance.Clients.Add(DataParser.ParseClient(message.Substring(1)));
+                        //DbContext.Instance.Clients.Add(DataParser.ParseClient(message.Substring(1)));
+                        DbContext.Instance.SClients.Add(DataParser.ParseSClient(message.Substring(1)));
                         break;
                     }
                 case "P":
                     {
-                        DbContext.Instance.Products.Add(DataParser.ParseProduct(message.Substring(1)));
+                        //DbContext.Instance.Products.Add(DataParser.ParseProduct(message.Substring(1)));
+                        DbContext.Instance.SProducts.Add(DataParser.ParseSProduct(message.Substring(1)));
                         break;
                     }
                 default:

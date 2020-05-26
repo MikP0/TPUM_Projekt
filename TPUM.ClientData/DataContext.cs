@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TPUM.ClientData.Interfaces;
 using TPUM.ClientData.Model;
+using TPUM.Dependencies.Model;
 
 namespace TPUM.ClientData
 {
     public class DataContext
     {
-        public List<Client> Clients { get; set; }
-        public List<Product> Products { get; set; }
+        public List<SClient> SClients { get; set; }
+        public List<SProduct> SProducts { get; set; }
     }
 }

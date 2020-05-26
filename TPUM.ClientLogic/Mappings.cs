@@ -1,42 +1,41 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
-using TPUM.ClientData.Model;
 using TPUM.ClientLogic.DTOs;
+using TPUM.Dependencies.Model;
 
 namespace TPUM.ClientLogic
 {
     public static class Mappings
     {
-        public static ClientDTO MapClient(Client client)
+        public static ClientDTO MapClient(SClient client)
         {
             ClientDTO clientDTO = new ClientDTO
             {
                 Id = client.Id,
                 Name = client.Name,
                 LastName = client.LastName,
-                Age = DateTime.Now.Year - client.DateOfBirth.Year,
+                Age = client.Age,
                 Cart = MapCart(client.Cart)
             };
 
             return clientDTO;
         }
 
-        public static ProductDTO MapProduct(Product product)
+        public static ProductDTO MapProduct(SProduct product)
         {
             ProductDTO productDTO = new ProductDTO
             {
                 Id = product.Id,
                 Author = product.Author,
                 Name = product.Name,
-                MinimalAge = DateTime.Now.Year - product.AllowedFromDate.Year,
+                MinimalAge = product.MinimalAge,
                 Price = product.Price
             };
 
             return productDTO;
         }
 
-        public static CartDTO MapCart(Cart cart)
+        public static CartDTO MapCart(SCart cart)
         {
             CartDTO cartDTO = new CartDTO
             {
