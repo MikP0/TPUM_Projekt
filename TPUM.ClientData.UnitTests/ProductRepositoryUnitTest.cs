@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPUM.ClientData.Model;
 using TPUM.ClientData.Repositiories;
+using TPUM.Dependencies.Model;
 
 namespace TPUM.ClientData.UnitTests
 {
@@ -13,30 +13,29 @@ namespace TPUM.ClientData.UnitTests
         [TestMethod]
         public void CreateTest()
         {
-            DataContext dataContext = new DataContext { Products = new List<Product>() };
-            ProductRepository productRepository = new ProductRepository(dataContext);
+            DataContext dataContext = new DataContext { SProducts = new List<SProduct>() };
+            SProductRepository productRepository = new SProductRepository(dataContext);
             Assert.IsNotNull(productRepository);
         }
         [TestMethod]
         public void GetTest()
         {
-            DataContext dataContext = new DataContext { Products = new List<Product>() };
-            ProductRepository productRepository = new ProductRepository(dataContext);
-            IEnumerable<Product> products = productRepository.Get();
+            DataContext dataContext = new DataContext { SProducts = new List<SProduct>() };
+            SProductRepository productRepository = new SProductRepository(dataContext);
+            IEnumerable<SProduct> products = productRepository.Get();
             Assert.IsNotNull(products);
         }
 
         [TestMethod]
         public void AddTest()
         {
-            DataContext dataContext = new DataContext { Products = new List<Product>() };
-            ProductRepository productRepository = new ProductRepository(dataContext);
-            productRepository.Add(new Product
+            DataContext dataContext = new DataContext { SProducts = new List<SProduct>() };
+            SProductRepository productRepository = new SProductRepository(dataContext);
+            productRepository.Add(new SProduct
             {
                 Id = 1,
-                AllowedFromDate = new DateTime(2000, 1, 1),
+                MinimalAge = 19,
                 Author = "21Studios",
-                IsLocked = false,
                 Name = "Game 1",
                 Price = 20.4f
             });
@@ -48,14 +47,13 @@ namespace TPUM.ClientData.UnitTests
         [TestMethod]
         public void DeleteTest()
         {
-            DataContext dataContext = new DataContext { Products = new List<Product>() };
-            ProductRepository productRepository = new ProductRepository(dataContext);
-            productRepository.Add(new Product
+            DataContext dataContext = new DataContext { SProducts = new List<SProduct>() };
+            SProductRepository productRepository = new SProductRepository(dataContext);
+            productRepository.Add(new SProduct
             {
                 Id = 1,
-                AllowedFromDate = new DateTime(2000, 1, 1),
+                MinimalAge = 19,
                 Author = "21Studios",
-                IsLocked = false,
                 Name = "Game 1",
                 Price = 20.4f
             });
@@ -67,25 +65,23 @@ namespace TPUM.ClientData.UnitTests
         [TestMethod]
         public void UpdateTest()
         {
-            DataContext dataContext = new DataContext { Products = new List<Product>() };
-            ProductRepository productRepository = new ProductRepository(dataContext);
-            productRepository.Add(new Product
+            DataContext dataContext = new DataContext { SProducts = new List<SProduct>() };
+            SProductRepository productRepository = new SProductRepository(dataContext);
+            productRepository.Add(new SProduct
             {
                 Id = 1,
-                AllowedFromDate = new DateTime(2000, 1, 1),
+                MinimalAge = 19,
                 Author = "21Studios",
-                IsLocked = false,
                 Name = "Game 1",
                 Price = 20.4f
             });
             string newAuthor = "TSA";
 
-            Product product2 = new Product
+            SProduct product2 = new SProduct
             {
                 Id = 1,
-                AllowedFromDate = new DateTime(2000, 1, 1),
+                MinimalAge = 19,
                 Author = newAuthor,
-                IsLocked = false,
                 Name = "Game 1",
                 Price = 20.4f
             };
@@ -98,30 +94,28 @@ namespace TPUM.ClientData.UnitTests
         [TestMethod]
         public void FilterTest()
         {
-            DataContext dataContext = new DataContext { Products = new List<Product>() };
-            ProductRepository productRepository = new ProductRepository(dataContext);
-            productRepository.Add(new Product
+            DataContext dataContext = new DataContext { SProducts = new List<SProduct>() };
+            SProductRepository productRepository = new SProductRepository(dataContext);
+            productRepository.Add(new SProduct
             {
                 Id = 1,
-                AllowedFromDate = new DateTime(2000, 1, 1),
+                MinimalAge = 19,
                 Author = "21Studios",
-                IsLocked = false,
                 Name = "Game 1",
                 Price = 20.4f
             });
 
 
-            productRepository.Add(new Product
+            productRepository.Add(new SProduct
             {
                 Id = 1,
-                AllowedFromDate = new DateTime(2001, 1, 1),
-                Author = "Boom",
-                IsLocked = false,
+                MinimalAge = 17,
+                Author = "12Studios",
                 Name = "Game 2",
-                Price = 25.4f
+                Price = 20.4f
             });
 
-            List<Product> products = productRepository.Get(c => c.AllowedFromDate == new DateTime(2000, 1, 1)).ToList();
+            List<SProduct> products = productRepository.Get(c => c.MinimalAge ==  19).ToList();
             Assert.AreEqual(1, products.Count());
         }
     }

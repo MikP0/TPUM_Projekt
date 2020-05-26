@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TPUM.ClientData.Model;
 using TPUM.ClientData.Repositiories;
+using TPUM.Dependencies.Model;
 
 namespace TPUM.ClientData.UnitTests
 {
@@ -13,29 +13,29 @@ namespace TPUM.ClientData.UnitTests
         [TestMethod]
         public void CreateTest()
         {
-            DataContext dataContext = new DataContext { Clients = new List<Client>() };
-            ClientRepository ClientRepository = new ClientRepository(dataContext);
+            DataContext dataContext = new DataContext { SClients = new List<SClient>() };
+            SClientRepository ClientRepository = new SClientRepository(dataContext);
             Assert.IsNotNull(ClientRepository);
         }
 
         [TestMethod]
         public void GetTest()
         {
-            DataContext dataContext = new DataContext { Clients = new List<Client>() };
-            ClientRepository ClientRepository = new ClientRepository(dataContext);
-            IEnumerable<Client> Clients = ClientRepository.Get();
+            DataContext dataContext = new DataContext { SClients = new List<SClient>() };
+            SClientRepository ClientRepository = new SClientRepository(dataContext);
+            IEnumerable<SClient> Clients = ClientRepository.Get();
             Assert.IsNotNull(Clients);
         }
         [TestMethod]
         public void AddTest()
         {
-            DataContext dataContext = new DataContext { Clients = new List<Client>() };
-            ClientRepository ClientRepository = new ClientRepository(dataContext);
-            Client client = new Client
+            DataContext dataContext = new DataContext { SClients = new List<SClient>() };
+            SClientRepository ClientRepository = new SClientRepository(dataContext);
+            SClient client = new SClient
             {
                 Id = -1,
-                DateOfBirth = new DateTime(1990, 1, 1),
-                Cart = new Cart(),
+                Age = 18,
+                Cart = new SCart(),
                 Name = "John",
                 LastName = "Doe"
             };
@@ -46,13 +46,13 @@ namespace TPUM.ClientData.UnitTests
         [TestMethod]
         public void DeleteTest()
         {
-            DataContext dataContext = new DataContext { Clients = new List<Client>() };
-            ClientRepository ClientRepository = new ClientRepository(dataContext);
-            Client client = new Client
+            DataContext dataContext = new DataContext { SClients = new List<SClient>() };
+            SClientRepository ClientRepository = new SClientRepository(dataContext);
+            SClient client = new SClient
             {
                 Id = -1,
-                DateOfBirth = new DateTime(1990, 1, 1),
-                Cart = new Cart(),
+                Age = 18,
+                Cart = new SCart(),
                 Name = "John",
                 LastName = "Doe"
             };
@@ -65,52 +65,52 @@ namespace TPUM.ClientData.UnitTests
         [TestMethod]
         public void FilterTest()
         {
-            DataContext dataContext = new DataContext { Clients = new List<Client>() };
-            ClientRepository ClientRepository = new ClientRepository(dataContext);
-            Client client = new Client
+            DataContext dataContext = new DataContext { SClients = new List<SClient>() };
+            SClientRepository ClientRepository = new SClientRepository(dataContext);
+            SClient client = new SClient
             {
                 Id = -1,
-                DateOfBirth = new DateTime(1990, 1, 1),
-                Cart = new Cart(),
+                Age = 18,
+                Cart = new SCart(),
                 Name = "John",
                 LastName = "Doe"
             };
-            Client client2 = new Client
+            SClient client2 = new SClient
             {
                 Id = -2,
-                DateOfBirth = new DateTime(1991, 1, 1),
-                Cart = new Cart(),
+                Age = 32,
+                Cart = new SCart(),
                 Name = "Jack",
                 LastName = "Sparrow"
             };
             ClientRepository.Add(client);
             ClientRepository.Add(client2);
 
-            List<Client> clients = ClientRepository.Get(c => c.DateOfBirth == new DateTime(1990, 1, 1)).ToList();
+            List<SClient> clients = ClientRepository.Get(c => c.Age == 32).ToList();
             Assert.AreEqual(1, clients.Count());
             
         }
         [TestMethod]
         public void UpdateTest()
         {
-            DataContext dataContext = new DataContext { Clients = new List<Client>() };
-            ClientRepository ClientRepository = new ClientRepository(dataContext);
-            Client client = new Client
+            DataContext dataContext = new DataContext { SClients = new List<SClient>() };
+            SClientRepository ClientRepository = new SClientRepository(dataContext);
+            SClient client = new SClient
             {
                 Id = -1,
-                DateOfBirth = new DateTime(1990, 1, 1),
-                Cart = new Cart(),
+                Age = 18,
+                Cart = new SCart(),
                 Name = "John",
                 LastName = "Doe"
             };
             ClientRepository.Add(client);
 
             string newName = "Jack";
-            Client client2 = new Client
+            SClient client2 = new SClient
             {
                 Id = -1,
-                DateOfBirth = new DateTime(1990, 1, 1),
-                Cart = new Cart(),
+                Age = 32,
+                Cart = new SCart(),
                 Name = newName,
                 LastName = "Doe"
             };
