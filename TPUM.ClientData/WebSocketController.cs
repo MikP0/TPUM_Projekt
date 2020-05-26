@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
-using TPUM.ClientData.Model;
 using TPUM.Dependencies.Model;
 
 namespace TPUM.ClientData

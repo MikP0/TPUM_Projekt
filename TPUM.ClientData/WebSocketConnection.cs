@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TPUM.ClientData
 {
-    public abstract class WebSocketConnection
+    public abstract class WebSocketConnection : IObservable<bool>
     {
         public virtual Action<string> onMessage { set; protected get; } = x => { };
         public virtual Action onClose { set; protected get; } = () => { };
@@ -19,5 +19,15 @@ namespace TPUM.ClientData
         public abstract Task DisconnectAsync();
 
         public abstract Task SendTask(string message);
+
+
+
+        public List<IObserver<bool>> observers;
+
+        public IDisposable Subscribe(IObserver<bool> observer)
+        {
+            observers.Add(observer);
+            return null;
+        }
     }
 }

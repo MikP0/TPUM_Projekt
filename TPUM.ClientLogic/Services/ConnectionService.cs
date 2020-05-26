@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TPUM.ClientData;
-using TPUM.ClientData.Model;
 
 namespace TPUM.ClientLogic
 {
@@ -12,15 +11,22 @@ namespace TPUM.ClientLogic
         public ClientWebSocketConnection _clientWebSocket;
         public Action<string> _connectionLogger;
         public WebSocketController socketController;
+        private Uri _Uri;
 
         public ConnectionService()
         {
             socketController = new WebSocketController();
         }
 
-        public async Task<bool> CreateConnection(Uri peer)
+        public ConnectionService(string uri)
         {
-            await socketController.Connect(peer);
+            socketController = new WebSocketController();
+            _Uri = new Uri(uri);
+        }
+
+        public async Task<bool> CreateConnection()
+        {
+            await socketController.Connect(_Uri);
             return true;
         }
 
@@ -28,6 +34,11 @@ namespace TPUM.ClientLogic
         {
             await socketController.SendTask(newTask);
             return true;
+        }
+
+        public ClientWebSocketConnection GetClientWebSocket()
+        {
+            return socketController._clientWebSocket;
         }
     }
 }

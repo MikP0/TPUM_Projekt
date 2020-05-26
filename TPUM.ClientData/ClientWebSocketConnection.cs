@@ -19,6 +19,8 @@ namespace TPUM.ClientData
             m_Peer = peer;
             m_Log = log;
             Task.Factory.StartNew(() => ClientMessageLoop());
+
+            observers = new List<IObserver<bool>>();
         }
 
         public override Task SendTask(string message)
@@ -67,6 +69,11 @@ namespace TPUM.ClientData
                     string _message = Encoding.UTF8.GetString(buffer, 0, count);
                     m_Log(_message);
                     onMessage?.Invoke(_message);
+
+                    if (observers != null)
+                    {
+                        observers.ForEach(o => o.OnNext(true));
+                    }
                 }
             }
             catch (Exception _ex)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TPUM.ClientData.Model;
 using TPUM.Dependencies.Model;
 
 namespace TPUM.ClientData
