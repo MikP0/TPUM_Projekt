@@ -1,0 +1,14 @@
+SProduct,1,ObjectType
+SProduct_Id,53,Variable
+SProduct_Author,54,Variable
+SProduct_Price,55,Variable
+SProduct_MinimalAge,56,Variable
+SProduct_Name,57,Variable
+SCart,58,ObjectType
+SCart_Products,59,Variable
+SClient,60,ObjectType
+SClient_Name,61,Variable
+SClient_Id,62,Variable
+SClient_Age,63,Variable
+SClient_LastName,64,Variable
+SClient_Cart,65,Variable

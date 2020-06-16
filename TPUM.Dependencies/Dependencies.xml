@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="OPCFModelDesign.xslt"?>
+<ModelDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:ua="http://opcfoundation.org/UA/" TargetNamespace="http://opcfoundation.org/UA/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="ua" Prefix="Dependencies" XmlPrefix="ua">http://opcfoundation.org/UA/</Namespace>
+  </Namespaces>
+  <ObjectType SymbolicName="ua:SProduct" BaseType="ua:BaseObjectType">
+    <BrowseName>SProduct</BrowseName>
+    <Children>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Id</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:String" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Author</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:Double" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Price</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>MinimalAge</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:String" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Name</BrowseName>
+      </Variable>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ua:SCart" BaseType="ua:BaseObjectType">
+    <BrowseName>SCart</BrowseName>
+    <Children>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:String" ValueRank="Array" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Products</BrowseName>
+      </Variable>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ua:SClient" BaseType="ua:BaseObjectType">
+    <BrowseName>SClient</BrowseName>
+    <Children>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:String" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Name</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Id</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Age</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:String" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>LastName</BrowseName>
+      </Variable>
+      <Variable SymbolicName="ua:" TypeDefinition="ua:BaseVariableType" ModellingRule="None" DataType="ua:String" ValueRank="Scalar" AccessLevel="ReadWrite" Historizing="false">
+        <BrowseName>Cart</BrowseName>
+      </Variable>
+    </Children>
+  </ObjectType>
+</ModelDesign>
