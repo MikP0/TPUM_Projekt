@@ -89,8 +89,10 @@ namespace TPUM.ClientPresentation.ViewModel
 
         public MainViewModel()
         {
-            DoCommand = new RelayCommand(SetConnection);
-            DoNextCommand = new RelayCommand(GetProducts);
+            //DoCommand = new RelayCommand(SetConnection);
+            DoCommand = new RelayCommand(SetConnectionInter);
+            //DoNextCommand = new RelayCommand(GetProducts);
+            DoNextCommand = new RelayCommand(GetProductsInter);
 
             _ProductService = new ProductService();
             _Products = new ObservableCollection<ProductDTO>(_ProductService.GetProducts().Result);
@@ -145,9 +147,20 @@ namespace TPUM.ClientPresentation.ViewModel
             _ViewObserver = _ReactiveMessenger.Subscribe(x => UpdateProducts());
         }
 
+        public void SetConnectionInter()
+        {
+           _ConnectionService.CreateConnectionInter();
+           ResultText = "Connected";
+        }
+
         public async void GetProducts()
         {
             await _ConnectionService.SendTask("GetAllProducts");
+        }
+
+        public void GetProductsInter()
+        {
+            _ConnectionService.SendMessegeInter("GetAllProducts");
         }
 
         public void UpdateProducts()

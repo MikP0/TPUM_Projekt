@@ -12,6 +12,8 @@ namespace TPUM.ClientData
         private ClientWebSocket m_ClientWebSocket = null;
         private Uri m_Peer = null;
         private readonly Action<string> m_Log;
+        private string LogsToInter = "";
+
 
         public ClientWebSocketConnection(ClientWebSocket clientWebSocket, Uri peer, Action<string> log)
         {
@@ -26,6 +28,20 @@ namespace TPUM.ClientData
         public override Task SendTask(string message)
         {
             return m_ClientWebSocket.SendAsync(message.GetArraySegment(), WebSocketMessageType.Text, true, CancellationToken.None); ;
+        }
+
+        public void SendMessegeInter(string message)
+        {
+            string check = LogsToInter;
+
+            m_ClientWebSocket.SendAsync(message.GetArraySegment(), WebSocketMessageType.Text, true, CancellationToken.None);
+           
+            while (check == LogsToInter)
+            {
+                // wait until receive message
+            }
+
+            LogsToInter = "";
         }
 
         public override Task DisconnectAsync()
@@ -69,6 +85,7 @@ namespace TPUM.ClientData
                     string _message = Encoding.UTF8.GetString(buffer, 0, count);
                     m_Log(_message);
                     onMessage?.Invoke(_message);
+                    LogsToInter = _message;
 
                     if (observers != null)
                     {

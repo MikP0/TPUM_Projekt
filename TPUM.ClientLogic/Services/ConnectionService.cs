@@ -30,10 +30,20 @@ namespace TPUM.ClientLogic
             return true;
         }
 
+        public void CreateConnectionInter()
+        {
+            socketController.ConnectInter(_Uri);
+        }
+
         public async Task<bool> SendTask(string newTask)
         {
             await socketController.SendTask(newTask);
             return true;
+        }
+
+        public void SendMessegeInter(string newTask)
+        {
+            socketController.SendMessegeInter(newTask);
         }
 
         public ClientWebSocketConnection GetClientWebSocket()
