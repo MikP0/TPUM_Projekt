@@ -150,7 +150,6 @@ namespace TPUM.ClientPresentation.ViewModel
         public void SetConnectionInter()
         {
            _ConnectionService.CreateConnectionInter();
-           ResultText = "Connected";
         }
 
         public async void GetProducts()
