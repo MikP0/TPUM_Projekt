@@ -51,6 +51,14 @@ namespace TPUM.ServerPresentation
             await ws.SendAsync(message);
         }
 
+        private async Task SendAll(string message)
+        {
+            foreach(var ws in Sockets)
+            {
+                await ws.SendAsync(message);
+            }
+        }
+
         private void initMessageHandler(WebSocketConnection ws)
         {
             ws.onMessage = async (data) =>
